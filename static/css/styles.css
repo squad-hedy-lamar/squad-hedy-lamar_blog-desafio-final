@@ -1,0 +1,86 @@
+.post-details {
+  .img-post {
+    height: 200px;
+    width: 100%;
+  }
+
+  .conteudo-post {
+    gap: 2px;
+    display: flex;
+    flex-direction:column;
+    
+    p{
+      text-align: left;
+    }
+
+    .titulo-post {
+      margin-top: 20px;
+    }
+  }
+
+  .comentarios {
+    text-align: left;
+  }
+}
+
+
+.post-list {
+  .img-post {
+    height: 100px;
+  }
+
+  .footer-post {
+    display: flex; 
+    justify-content:space-between;
+    margin-top: 5px;
+  }
+}
+
+.navbar-blog {
+  background-color: #190E4F !important;
+  border-color: #190E4F;
+}
+
+.btn-primary {
+  background-color: #EA638C !important;
+  border-color: #EA638C;
+
+  &:hover {
+    background-color: #CF5089 !important; 
+    border-color: #CF5089;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+}
+
+.btn-outline-light {
+  &:hover {
+    background-color: #CF5089 !important; 
+    border-color: #CF5089;
+    color: #fff;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+}
+
+input {
+  background-color:  #fff !important;
+  color: black !important;
+}
+
+input::placeholder {
+  color: gray !important;
+  opacity: 1 !important;
+}
+
+i {
+  width: 24px; 
+  height: 24px; 
+  border-radius: 50%; 
+  background-color: #B33C86; 
+  color: white;
+  padding: 5px 5px;
+  font-size: 8px;
+}
+
+.btn-icon i {
+  background-color: #EA638C !important; 
+}

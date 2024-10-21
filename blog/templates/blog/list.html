@@ -1,9 +1,21 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Home - Meu Blog{% endblock %}
 
 {% block content %}
-<h1>alterar esse texto aqui</h1>
+
+<div class="carrossel">
+  <div class="slides">
+      <div class="slide active">
+        <img src="{% static 'img/Hedy_Lamar.png' %}" alt="Mulheres na Tecnologia">
+          <div class="texto">
+              <h2>Mulheres</h2>
+              <h2>Tecnologia</h2>
+          </div>
+      </div>
+  </div>
+</div>
 
 <div class="text-start mt-5 post-list">
   <div class="row row-cols-1 row-cols-md-3 g-4">

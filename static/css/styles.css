@@ -84,3 +84,22 @@ i {
 .btn-icon i {
   background-color: #EA638C !important; 
 }
+
+.carrossel {
+  position: relative;
+  max-width: 600px;
+  margin: auto;
+  overflow: hidden;
+}
+
+.texto {
+  position: absolute;
+  top: 50%;  
+  left: 50%; 
+  transform: translate(-80%, -30%); 
+  color: white; 
+  background-color: rgba(0, 0, 0, 0.5); 
+  padding: 10px;
+  border-radius: 5px; 
+  text-align: center; 
+}

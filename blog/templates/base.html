@@ -15,8 +15,10 @@
 <body class="d-flex flex-column min-vh-100">
     <!-- Header / Navbar -->
     <nav class="navbar navbar-expand-lg bg-dark border-bottom border-body navbar-blog" data-bs-theme="dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/">Blog</a>
+        <div class="container-fluid menu">
+            <a class="navbar-brand" href="/">
+            <img src="{% static 'img/logo.png' %}" alt="Logo" class="d-inline-block align-text-top logo">
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -30,14 +32,13 @@
                   </li> -->
                 </ul>
                 <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                    <button class="btn btn-outline-light" type="submit">Buscar</button>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Buscar..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn btn-primary btn-icon" type="submit">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                      </div>
                 </form>
-            </div>
-            <div class="d-flex align-items-center mx-2">
-            <button data-mdb-ripple-init type="button" class="btn btn-primary px-3 me-3">
-                Login
-            </button>
             </div>
         </div>
     </nav>
@@ -55,7 +56,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-light text-center py-3">
+    <footer class="bg-light text-center py-3 footer">
         <p>&copy; 2024 @squad-hedy-lamar 💙</p>
     </footer>
 

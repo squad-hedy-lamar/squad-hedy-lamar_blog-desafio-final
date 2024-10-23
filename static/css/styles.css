@@ -15,6 +15,7 @@
 
     .titulo-post {
       margin-top: 20px;
+      color: #190E4F !important;
     }
   }
 
@@ -37,13 +38,18 @@
 }
 
 .navbar-blog {
-  background-color: #190E4F !important;
-  border-color: #190E4F;
+  background-color: #FFF !important;
+  border-color: #FFF !important;
 }
 
 .btn-primary {
   background-color: #EA638C !important;
   border-color: #EA638C;
+
+  &:hover i {
+    background-color: #CF5089 !important; 
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
 
   &:hover {
     background-color: #CF5089 !important; 
@@ -64,6 +70,7 @@
 input {
   background-color:  #fff !important;
   color: black !important;
+  border-color: #B33C86 !important;
 }
 
 input::placeholder {
@@ -81,6 +88,26 @@ i {
   font-size: 8px;
 }
 
+a, h1, h2, h3, h4, h5 {
+  color: #190E4F !important;
+}
+
 .btn-icon i {
   background-color: #EA638C !important; 
 }
+
+.footer {
+  background-color: #66256B !important; 
+  color: #FFF !important;
+  height: 150px;
+}
+
+.menu {
+  padding: 10px 25px 0px 25px;
+}
+
+.logo {
+  width: 250px;
+  height: 22px;
+}
+

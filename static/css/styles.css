@@ -37,8 +37,16 @@
 }
 
 .navbar-blog {
-  background-color: #190E4F !important;
-  border-color: #190E4F;
+  background-color: #FDFBFB !important;
+  border-color: #66256B;
+  
+}
+
+.nav-blog {
+  font-family: 'Roboto', sans-serif; /* Defina a fonte desejada */
+  font-weight: 700;
+  color: #CF5089; /* Defina a cor do título */
+  font-size: 48px; /* Defina o tamanho da fonte */
 }
 
 .btn-primary {
@@ -67,7 +75,7 @@ input {
 }
 
 input::placeholder {
-  color: gray !important;
+  color: #190E4F !important;
   opacity: 1 !important;
 }
 
@@ -83,5 +91,40 @@ i {
 
 .btn-icon i {
   background-color: #EA638C !important; 
+}
+
+/*esse codigo 23/10*/
+.search-bar {
+  border: 1px solid #B33C86; /* Cor da borda */
+  border-radius: 5px; /* Bordas arredondadas */
+  padding: 5px;
+  /* background-color: #f8f9fa; Cor de fundo */
+  display: flex;
+  align-items: center;
+}
+
+.form-control {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  font-size: 1.2rem;
+  color: #2c145a; /* Cor do texto */
+  background-color: transparent;
+}
+
+.search-btn {
+  background-color: transparent;
+  border: none;
+  color: #2c145a; /* Cor do ícone da lupa */
+  font-size: 1.5rem;
+}
+
+.search-bar:hover,
+.form-control:focus {
+  border-color: #a0286b; /* Alteração da cor ao focar ou passar o mouse */
+}
+
+.search-btn:hover {
+  color: #a0286b; /* Alteração da cor do ícone ao passar o mouse */
 }
 

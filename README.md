@@ -42,6 +42,10 @@ python -m venv .venv
 # como boa prática criamos o requirements.txt que contém todas as todas as bibliotecas utilizadas
 pip install -r requirements.txt
 
+#executar as migrations
+python manage.py makemigrations
+python manage.py migrate 
+
 # iniciar o servidor
 # acessar a porta padrão no navegador -> Running on  http://127.0.0.1:8000/
 python manage.py runserver

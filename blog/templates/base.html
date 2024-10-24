@@ -30,6 +30,14 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <!-- <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Features</a>
+                  </li> -->
+                </ul>
                 {% if request.path == '/' %}
                 <form class="d-flex" role="search" action="{% url 'blog-home' %}" method="GET">
                     <div class="input-group mb-3">
@@ -49,7 +57,7 @@
         </div>
     </nav>
 
-    <header class="text-center mt-3">
+    <header class="text-center">
         <h1>{% block header %}{% endblock %}</h1>
     </header>
 
@@ -62,7 +70,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-light text-center py-3 footer">
+    <footer class="bg-light text-center py-3 mt-5 footer">
         <p>&copy; 2024 @squad-hedy-lamar 💙</p>
     </footer>
 

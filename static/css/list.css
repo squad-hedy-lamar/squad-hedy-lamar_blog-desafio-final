@@ -40,7 +40,7 @@
 }
 
 .banner-title {
-  color: white;
+  color: white !important;
   font-weight: bold;
   font-size: 3.5rem;
 }

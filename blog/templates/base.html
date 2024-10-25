@@ -22,7 +22,9 @@
     <!-- Header / Navbar -->
     <nav class="navbar navbar-expand-lg bg-dark border-body navbar-blog" data-bs-theme="dark">
         <div class="container-fluid">
-            <a class="navbar-brand nav-blog" href="/"><span style="color:#190E4F;">BLOG</span> HEDY LAMAR</a>
+            <a class="navbar-brand" href="/">
+                <img src="{% static 'img/logo.png' %}" alt="Logo" class="d-inline-block align-text-top logo">
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
                 aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -36,20 +38,26 @@
                     <a class="nav-link" href="#">Features</a>
                   </li> -->
                 </ul>
-                <form class="d-flex search-bar" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Buscar Postagem" aria-label="Search">
-                    <button class="btn btn-outline-light btn-bd-primary" type="submit">Buscar</button>
+                {% if request.path == '/' %}
+                <form class="d-flex" role="search" action="{% url 'blog-home' %}" method="GET">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Buscar..." 
+                            aria-label="Buscar" 
+                            aria-describedby="button-addon2"
+                            name="q"
+                            value="{{ query|default:'' }}"
+                            >
+                        <button class="btn btn-primary btn-icon" type="submit">
+                            <i class="fa fa-search" aria-hidden="true"></i>
+                        </button>
+                      </div>
                 </form>
-            </div>
-            <div class="d-flex align-items-center mx-2">
-                <button data-mdb-ripple-init type="button" class="btn btn-primary px-3 me-3">
-                    Login
-                </button>
+                {% endif %}
             </div>
         </div>
     </nav>
 
-    <header class="text-center mt-3">
+    <header class="text-center">
         <h1>{% block header %}{% endblock %}</h1>
     </header>
 
@@ -62,7 +70,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-light text-center py-3">
+    <footer class="bg-light text-center py-3 mt-5 footer">
         <p>&copy; 2024 @squad-hedy-lamar 💙</p>
     </footer>
 

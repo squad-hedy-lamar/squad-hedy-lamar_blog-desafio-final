@@ -1,6 +1,6 @@
 from django.http import HttpResponse
-from django.shortcuts import render
-from .models import Post
+from django.shortcuts import render, get_object_or_404
+from blog.models import Post
 from unidecode import unidecode
 from django.db.models import Q
 
@@ -16,11 +16,13 @@ def home(request):
         
         posts = Post.objects.filter(q_objects)
     else: 
-        posts = Post.objects.all()
+        posts = Post.objects.all().order_by("-created_at")
         
     return render(request, "blog/list.html", {'posts': posts, 'query': query})
 
 def details(request, id):
-
-    #lista todos os posts
-    return render(request, "blog/details.html")
+    # Tenta buscar o post pelo ID, ou retorna 404 se não existir
+    post = get_object_or_404(Post, id=id)
+    return render(
+        request, "blog/details.html", {"post": post}
+    )  # Enviar o post específico para o template

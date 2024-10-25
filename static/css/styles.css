@@ -94,30 +94,9 @@ i {
   background-color: #EA638C !important; 
 }
 
-/*esse codigo 23/10*/
-.search-bar {
-  border: 1px solid #B33C86; /* Cor da borda */
-  border-radius: 5px; /* Bordas arredondadas */
-  padding: 5px;
-  /* background-color: #f8f9fa; Cor de fundo */
-  display: flex;
-  align-items: center;
-}
-
-.form-control {
-  border: none;
-  outline: none;
-  box-shadow: none;
-  font-size: 1.2rem;
-  color: #2c145a; /* Cor do texto */
-  background-color: transparent;
-}
-
-.search-btn {
-  background-color: transparent;
-  border: none;
-  color: #2c145a; /* Cor do ícone da lupa */
-  font-size: 1.5rem;
+/*--footer--*/
+.purple {
+  background-color: #66256B; /* Cor roxa */
 }
 
 .form-control {
@@ -135,12 +114,6 @@ i {
 input::placeholder {
   color: #190E4F !important;
   opacity: 1 !important;
-}
-
-.footer {
-  background-color: #66256B !important; 
-  color: #FFF !important;
-  height: 150px;
 }
 
 .logo {

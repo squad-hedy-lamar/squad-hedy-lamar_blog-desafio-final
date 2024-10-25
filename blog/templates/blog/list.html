@@ -19,40 +19,47 @@
 <!-- cards.html -->
 <div class="text-start mt-5 post-list">
   <div class="row row-cols-1 row-cols-md-3 g-4">
-
+    {% for post in posts %}
     <div class="col">
       <div class="card" style="min-width: 200px;">
-        <div class="card-header bg-transparent">
-          <small>Nome Autor</small>
+        <div class="card-header bg-transparent h-75">
+          <small>{{ post.author }}</small> <!--nome autor-->
         </div>
-        <img
-          src="https://d585tldpucybw.cloudfront.net/sfimages/default-source/blogs/2020/2020-09/tb_1200x303729d60613a784c568e5db54f29a3b5e3.png?sfvrsn=fde52cd4_0"
-          class="card-img-top img-post" alt="img-post">
+        {% if post.image %}
+        <img src="{{ post.image.url }}" class="card-img-top img-post w-100 p-3 "
+          style="height: 150px; border-radius: 10px;" alt="Imagem do post">
+        {% else %}
+        <img src="{% static 'img/placeholder.png' %}" class="card-img-top img-post " alt="Imagem padrão">
+        {% endif %}
+
 
         <div class="card-body">
-          <h5 class="card-title">Titulo</h5>
+          <h5 class="card-title">{{ post.title }}</h5> <!--Mostra Titulo-->
           <p class="card-text text-truncate">
-            conteudo do texto aqui Este é um texto muito longo que deve ser truncado se não couber no card.
+            {{ post.content|truncatewords:20}} <!-- Trunca o conteúdo do post para mostrar as primeiras 20 palavras -->
           </p>
 
           <div class="text-end">
-            <a href="{% url 'post-detail' 1 %}" class="btn btn-primary btn-sm btn-icon">leia mais <i
+            <a href="{% url 'post-detail' post.id %}" class="btn btn-primary btn-sm btn-icon">leia mais <i
                 class="fa fa-arrow-right" aria-hidden="true"></i></a>
           </div>
         </div>
         <div class="card-footer py-0">
           <ul class="list-unstyled footer-post">
             <li class="d-inline me-3">
-              <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i>12/10/2024 17:00</small>
+              <small class="text-muted"><i class="fa fa-calendar" aria-hidden="true"></i>
+                {{ post.created_at|date:"d/m/Y" }}</small>
             </li>
-            <li class="d-inline me-3">
-              <small class="text-muted"><i class="fa fa-commenting-o" aria-hidden="true"></i> 2 comentários </small>
-            </li>
+            <!-- <li class="d-inline me-3">
+              <small class="text-muted"><i class="fa fa-commenting-o" aria-hidden="true"></i> {{ post.comments.count }}
+                comentários
+              </small>
+            </li> -->
           </ul>
         </div>
       </div>
     </div>
-
+    {% endfor %}
   </div>
 </div>
 {% endblock %}

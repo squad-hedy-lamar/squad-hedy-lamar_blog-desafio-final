@@ -58,6 +58,7 @@ body {
 .btn-primary {
   background-color: #EA638C !important;
   border-color: #EA638C;
+  color: #fff !important;
 
   &:hover {
     background-color: #CF5089 !important; 

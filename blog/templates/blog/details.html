@@ -16,7 +16,7 @@
       <small>
         <i class="fa fa-user" aria-hidden="true"></i> Publicado por: {{ post.author.username }}</small>
       <small>
-        <i class="fa fa-calendar" aria-hidden="true"></i> em: {{ post.published_date }}
+        <i class="fa fa-calendar" aria-hidden="true"></i> em: {{ post.created_at }}
       </small>
       <small>
         {% get_comment_count for post as comment_count %}

@@ -17,6 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from blog import views
 
 from project_blog import settings
 from django.conf.urls.static import static
@@ -24,6 +25,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("blog.urls")),
+    path('post/<int:id>/', views.details, name='post-detail'),
     path("accounts/", include("django.contrib.auth.urls")),
     path("comments/", include("django_comments.urls")),
 ]

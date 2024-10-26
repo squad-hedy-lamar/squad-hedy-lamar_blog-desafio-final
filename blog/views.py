@@ -22,7 +22,5 @@ def home(request):
 
 def details(request, id):
     # Tenta buscar o post pelo ID, ou retorna 404 se não existir
-    post = get_object_or_404(Post, id=id)
-    return render(
-        request, "blog/details.html", {"post": post}
-    )  # Enviar o post específico para o template
+    post  = get_object_or_404(Post, id=id)
+    return render(request, "blog/details.html", {'post': post})

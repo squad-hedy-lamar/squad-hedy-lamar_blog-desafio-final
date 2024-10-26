@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
 .post-details {
   .img-post {
     height: 200px;
@@ -39,7 +45,7 @@
 .navbar-blog {
   background-color: #FDFBFB !important;
   border-color: #66256B;
-  
+  padding: 10px 25px 0px 25px;
 }
 
 .nav-blog {
@@ -52,10 +58,16 @@
 .btn-primary {
   background-color: #EA638C !important;
   border-color: #EA638C;
+  color: #fff !important;
 
   &:hover {
     background-color: #CF5089 !important; 
     border-color: #CF5089;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+  }
+
+  &:hover i {
+    background-color: #CF5089 !important; 
     transition: background-color 0.3s ease, border-color 0.3s ease;
   }
 }
@@ -67,16 +79,6 @@
     color: #fff;
     transition: background-color 0.3s ease, border-color 0.3s ease;
   }
-}
-
-input {
-  background-color:  #fff !important;
-  color: black !important;
-}
-
-input::placeholder {
-  color: #190E4F !important;
-  opacity: 1 !important;
 }
 
 i {
@@ -93,38 +95,33 @@ i {
   background-color: #EA638C !important; 
 }
 
-/*esse codigo 23/10*/
-.search-bar {
-  border: 1px solid #B33C86; /* Cor da borda */
-  border-radius: 5px; /* Bordas arredondadas */
-  padding: 5px;
-  /* background-color: #f8f9fa; Cor de fundo */
-  display: flex;
-  align-items: center;
+/*--footer--*/
+.purple {
+  background-color: #66256B; /* Cor roxa */
 }
 
 .form-control {
-  border: none;
-  outline: none;
-  box-shadow: none;
-  font-size: 1.2rem;
-  color: #2c145a; /* Cor do texto */
-  background-color: transparent;
+  border: 1px solid #B33C86 !important;
+  background-color: #fff !important; 
+  color: black !important;
 }
 
-.search-btn {
-  background-color: transparent;
-  border: none;
-  color: #2c145a; /* Cor do ícone da lupa */
-  font-size: 1.5rem;
-}
-
-.search-bar:hover,
 .form-control:focus {
-  border-color: #a0286b; /* Alteração da cor ao focar ou passar o mouse */
+  border-color: #a0286b !important;
+  box-shadow: 0 0 0 0.25rem rgba(160, 40, 107, 0.25) !important;
+  outline: none !important;
 }
 
-.search-btn:hover {
-  color: #a0286b; /* Alteração da cor do ícone ao passar o mouse */
+input::placeholder {
+  color: #190E4F !important;
+  opacity: 1 !important;
 }
 
+.logo {
+  width: 270px;
+  height: 22px;
+}
+
+a, h1, h2, h3, h4, h5 {
+  color: #190E4F !important;
+}

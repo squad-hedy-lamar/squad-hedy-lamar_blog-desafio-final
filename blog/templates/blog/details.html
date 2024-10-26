@@ -73,7 +73,7 @@
           {% endfor %}
           <!-- Card -->
 
-
+          {% if user.is_authenticated %}
 
           <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
             <div class="d-flex flex-start w-100">
@@ -86,6 +86,7 @@
                 <form action="{% comment_form_target %}" method="post">
                     {% csrf_token %}
 
+                    <input type="hidden" name="next" value="{% url 'post-detail' id=post.id %}" />
                     {% for hidden in form.hidden_fields %}
                       {{ hidden }} 
                     {% endfor %}
@@ -106,19 +107,19 @@
 
                       {% if field.name == "name" %}
                       <div class="mb-3">
-                        <input class="form-control" type="text" id="{{ field.id_for_label }}" name="{{ field.name }}" placeholder="Digite seu nome"/>
+                        <input class="form-control" type="hidden" id="{{ field.id_for_label }}" name="{{ field.name }}" placeholder="Digite seu nome" value="{{ user.username }}"/>
                       </div>
                       {% endif %}
 
                       {% if field.name == "email" %}
                       <div class="mb-3">
-                        <input class="form-control" type="email" id="{{ field.id_for_label }}" name="{{ field.name }}" placeholder="Digite seu email"/>
+                        <input class="form-control" type="hidden" id="{{ field.id_for_label }}" name="{{ field.name }}" placeholder="Digite seu email" value="{{ user.email }}"/>
                       </div>
                       {% endif %}
 
                       {% if field.name == "url" %}
                       <div class="mb-3">
-                        <input class="form-control" type="url" id="{{ field.id_for_label }}" name="{{ field.name }}" placeholder="Digite a url"/>
+                        <input class="form-control" type="hidden" id="{{ field.id_for_label }}" name="{{ field.name }}" placeholder="Digite a url" value="http://localhost:8000/"/>
                       </div>
                       {% endif %}
                     {% endfor %}
@@ -132,6 +133,7 @@
 
             </div>
           </div>
+          {% endif %}
           
         </div>
       </div>

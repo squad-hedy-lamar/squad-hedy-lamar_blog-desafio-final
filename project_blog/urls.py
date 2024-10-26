@@ -23,7 +23,7 @@ from project_blog import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
+    # path("admin/", admin.site.urls),
     path("", include("blog.urls")),
     path('post/<int:id>/', views.details, name='post-detail'),
     path("accounts/", include("django.contrib.auth.urls")),

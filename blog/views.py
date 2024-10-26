@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from blog.models import Post
 from unidecode import unidecode
 from django.db.models import Q
+from django_comments.models import Comment
 
 def home(request):
     query = request.GET.get('q')
@@ -23,4 +24,5 @@ def home(request):
 def details(request, id):
     # Tenta buscar o post pelo ID, ou retorna 404 se não existir
     post  = get_object_or_404(Post, id=id)
-    return render(request, "blog/details.html", {'post': post})
+    comments = Comment.objects.filter(object_pk=post.pk, content_type__model='post')  # Filtrar pelos comentários do post
+    return render(request, "blog/details.html", {'post': post, 'comments': comments})

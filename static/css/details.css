@@ -1,0 +1,9 @@
+
+.footer-conteudo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.comentario-links a {
+  text-decoration: none;
+}

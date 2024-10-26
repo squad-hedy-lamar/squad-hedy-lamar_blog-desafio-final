@@ -117,9 +117,9 @@ USE_TZ = True
 
 SITE_ID = 1
 
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
-
-LOGOUT_REDIRECT_URL = '/login/'
+LOGOUT_REDIRECT_URL = '/'
 
 
 # Static  files (CSS, JavaScript, Images)

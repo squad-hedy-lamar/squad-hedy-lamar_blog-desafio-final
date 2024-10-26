@@ -139,3 +139,12 @@ a, h1, h2, h3, h4, h5, h6 {
   color: #190E4F !important;
 }
 
+.dropdown-item:active {
+    background-color: #CF5089 !important;
+    color: white !important;
+}
+
+.dropdown-item:hover {
+  background-color: #ebebeb !important;
+}
+

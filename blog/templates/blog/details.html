@@ -101,6 +101,9 @@
                           id="{{ field.id_for_label }}" 
                           name="{{ field.name }}"
                           placeholder="Digite seu comentário"
+                          required
+                          oninvalid="this.setCustomValidity('Por favor, insira um comentário.')" 
+                          oninput="this.setCustomValidity('')"
                           ></textarea>
                       </div>
                       {% endif %}

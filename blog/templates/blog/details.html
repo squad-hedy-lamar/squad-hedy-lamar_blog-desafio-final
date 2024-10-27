@@ -136,6 +136,10 @@
 
             </div>
           </div>
+          {% else %}
+          <div class="mt-5" style="background-color: #f8f9fa; padding: 5px; border-radius: 5px;">
+            <h4 class="text-center">Para postar um comentário, faça o <a href="{% url 'login' %}">login</a></h4>
+          </div>
           {% endif %}
           
         </div>

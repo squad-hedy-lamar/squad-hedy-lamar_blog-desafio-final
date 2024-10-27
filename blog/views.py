@@ -1,9 +1,10 @@
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from blog.models import Post
 from unidecode import unidecode
 from django.db.models import Q
 from django_comments.models import Comment
+
 
 def home(request):
     query = request.GET.get('q')
@@ -26,3 +27,21 @@ def details(request, id):
     post  = get_object_or_404(Post, id=id)
     comments = Comment.objects.filter(object_pk=post.pk, content_type__model='post')  # Filtrar pelos comentários do post
     return render(request, "blog/details.html", {'post': post, 'comments': comments})
+
+def criar_post(request):
+    # post = Post(title=request.POST['title'], content=request.POST['content'])
+    # post.save()
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        image = request.FILES.get('image')  # Captura a imagem enviada
+
+        post = Post(title=title, content=content, image=image, author=request.user)
+        post.save()
+        return redirect('blog-home')
+
+    return render(request, 'blog/create_post.html')
+    
+
+
+    

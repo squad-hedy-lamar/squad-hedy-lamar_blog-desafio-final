@@ -18,7 +18,7 @@
         <button type="submit" class="btn btn-lg btn-primary w-100">Entrar</button>
 
         <div class="mt-3">
-            <a href="#">Cadastre-se</a>
+            <a href="{% url 'cadastrar' %}">Cadastre-se</a>
         </div>
     </form>
 
@@ -35,7 +35,7 @@
                 <p>{{ error }}</p>
             {% endfor %}
         {% endif %}
-    </div
+    </div>
     {% endif %}
     
 </div>

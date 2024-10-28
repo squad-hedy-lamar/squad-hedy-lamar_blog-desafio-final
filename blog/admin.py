@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.utils.html import format_html
 from blog.models import Post
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render
 
 # Register your models here.
 
@@ -28,3 +30,4 @@ def image_preview(self, obj):
 
 
 image_preview.short_description = "Pré-visualização"
+

@@ -41,50 +41,53 @@
                 {% if request.path == '/' %}
                 <form class="d-flex" role="search" action="{% url 'blog-home' %}" method="GET">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Buscar..." 
-                            aria-label="Buscar" 
-                            aria-describedby="button-addon2"
-                            name="q"
-                            value="{{ query|default:'' }}"
-                            >
+                        <input type="text" class="form-control" placeholder="Buscar..." aria-label="Buscar"
+                            aria-describedby="button-addon2" name="q" value="{{ query|default:'' }}">
                         <button class="btn btn-primary btn-icon" type="submit">
                             <i class="fa fa-search" aria-hidden="true"></i>
                         </button>
-                      </div>
+                    </div>
                 </form>
                 {% endif %}
                 {% if user.is_authenticated %}
                 <div class="flex-shrink-0 dropdown mb-1 ms-2">
-                    <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="{% static 'img/avatar.png' %}" alt="mdo" width="32" height="32" class="rounded-circle me-2">
+                    <a href="#" class="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="{% static 'img/avatar.png' %}" alt="mdo" width="32" height="32"
+                            class="rounded-circle me-2">
                         <span>{{ user.username }}</span>
                     </a>
-                    <ul class="dropdown-menu text-small shadow" style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 34px);" data-popper-placement="bottom-end">
-                      <li>
-                        <a class="dropdown-item d-flex justify-content-between" href="#">
-                            Perfil
-                            <i class="fa fa-user" aria-hidden="true"></i>
-                        </a>
+                    <ul class="dropdown-menu text-small shadow"
+                        style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate(0px, 34px);"
+                        data-popper-placement="bottom-end">
+                        <li>
+                            <a class="dropdown-item d-flex justify-content-between" href="#">
+                                Perfil
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </a>
                         </li>
-                      <li><hr class="dropdown-divider"></li>
-                      <li>
-                        <a href="#" class="dropdown-item d-flex justify-content-between" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Sair <i class="fa fa-sign-out" aria-hidden="true"></i>
-                        </a>
-                        <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none;">
-                            {% csrf_token %}
-                        </form>
-                      </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a href="#" class="dropdown-item d-flex justify-content-between"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Sair <i class="fa fa-sign-out" aria-hidden="true"></i>
+                            </a>
+                            <form id="logout-form" action="{% url 'logout' %}" method="POST" style="display: none;">
+                                {% csrf_token %}
+                            </form>
+                        </li>
                     </ul>
                 </div>
                 {% else %}
-                    {% if request.path == '/' %}
-                    <div class="mb-3 ms-2 text-end">
-                        <a href="{% url 'login' %}" class="btn btn-primary">
-                            Login
-                        </a>
-                    </div>
-                    {% endif %}
+                {% if request.path == '/' %}
+                <div class="mb-3 ms-2 text-end">
+                    <a href="{% url 'login' %}" class="btn btn-primary">
+                        Login
+                    </a>
+                </div>
+                {% endif %}
                 {% endif %}
             </div>
         </div>
@@ -100,6 +103,7 @@
             {% block content %}
             {% endblock %}
         </div>
+
     </main>
 
     <!-- Footer -->

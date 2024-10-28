@@ -27,9 +27,10 @@
         </div>
         {% if post.image %}
         <img src="{{ post.image.url }}" class="card-img-top img-post w-100 p-3 "
-          style="height: 150px; border-radius: 10px;" alt="Imagem do post">
+          style="height: 150px; border-radius: 10px;" alt="Imagem do post {{ post.title }}">
         {% else %}
-        <img src="{% static 'img/placeholder.png' %}" class="card-img-top img-post " alt="Imagem padrão">
+        <img src="{% static 'img/placeholder.png' %}" class="card-img-top img-post w-100 p-3"
+          style="height: 150px; border-radius: 10px;" alt="Imagem padrão">
         {% endif %}
 
 
@@ -58,8 +59,14 @@
           </ul>
         </div>
       </div>
+
     </div>
     {% endfor %}
+  </div>
+  <div class="btn-criar-post d-flex justify-content-center mt-5 ">
+    <button type="button" class="btn btn-primary btn-lg mx-auto p-2"
+      onclick="window.location.href='{% url 'criar_post' %}'">
+      CRIAR POSTAGEM</button>
   </div>
 </div>
 {% endblock %}

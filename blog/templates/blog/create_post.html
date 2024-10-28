@@ -2,80 +2,83 @@
 {% load static %}
 {% load comments %}
 
-{% block title %} 
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <title>Formulário com Bootstrap</title>
-    <style>
-        #editor {
-            border: 1px solid #ced4da;
-            padding: 10px;
-            min-height: 200px;
-            overflow: auto;
-        }
-    </style>
-</head> 
-
-
+{% block title %}
+Formulário com Bootstrap
 {% endblock %}
 
 {% block content %}
+<div class="container mt-5">
+    <h2>Nova Postagem</h2>
+    <form method="POST" enctype="multipart/form-data"> <!-- Adicione 'enctype' para o upload de arquivos -->
+        {% csrf_token %}
 
+        <!-- Campo de Upload de Imagem -->
+        <div class="form-group">
+            <label for="imagem" class="form-label">Selecione uma imagem para a postagem:</label>
+            <div class="custom-file">
+                <input type="file" name="image" class="custom-file-input" id="imagem" accept="image/*">
+                <label class="custom-file-label" for="imagem">Escolher imagem...</label>
+            </div>
+        </div>
 
-    <div class="container mt-5">
-        <h2>Nova Postagem</h2>
-        <form method="POST">
-            {% csrf_token %} 
-            <div class="form-group">
-                <label for="imagem"> </label>
-                <input type="file" name="image" class="form-control" id="imagem" accept="image/*">
-            </div>
-            <div class="form-group">
-                <label for="titulo"> </label>
-                <input type="text" name="title" class="form-control" id="titulo" placeholder="Título">
-            </div>
-            <div class="form-group">
-                <label for="editor"> </label>
+        <!-- Campo de Título -->
+        <div class="form-group mt-3">
+            <label for="titulo">Título da Postagem:</label>
+            <input type="text" name="title" class="form-control" id="titulo" placeholder="Digite o título aqui"
+                required>
+        </div>
+
+        <!-- Editor de Conteúdo -->
+        <div class="form-group mt-3">
+            <label for="editor">Conteúdo da Postagem:</label>
+            <div class="btn-group mb-2">
                 <button type="button" class="btn btn-secondary" onclick="formatText('bold')">Negrito</button>
-                    <select id="fontSize" class="btn btn-secondary" onchange="formatText('fontSize')">
-                        <option value="">Tamanho</option>
-                        <option value="1">Pequeno</option>
-                        <option value="2">Médio</option>
-                        <option value="3">Grande</option>
-                    </select>
-                    <input type="color" name="content" id="colorPicker" class="btn btn-secondary" onchange="formatText('color')">
-
-                <div id="editor" contenteditable="true" class="form-control"></div>
-                <div class="mt-2">
-                    
-                </div>
+                <select id="fontSize" class="btn btn-secondary" onchange="formatText('fontSize')">
+                    <option value="">Tamanho do Texto</option>
+                    <option value="1">Pequeno</option>
+                    <option value="3">Médio</option>
+                    <option value="5">Grande</option>
+                </select>
+                <input type="color" id="colorPicker" class="btn btn-secondary" onchange="formatText('color')">
             </div>
-            <button type="submit" class="btn btn-primary">Enviar</button>
-        </form>
-    </div>
+            <div id="editor" contenteditable="true" class="form-control" style="min-height: 200px;"></div>
+            <input type="hidden" name="content" id="content"> <!-- Campo oculto para conteúdo do editor -->
+        </div>
 
-    <script>
-        function formatText(command) {
-            if (command === 'fontSize') {
-                const size = document.getElementById('fontSize').value;
-                document.execCommand('fontSize', false, size);
-            } else if (command === 'color') {
-                const color = document.getElementById('colorPicker').value;
-                document.execCommand('foreColor', false, color);
-            } else {
-                document.execCommand(command, false, null);
-            }
+        <!-- Botão de Enviar -->
+        <button type="submit" class="btn btn-primary mt-3">Publicar Postagem</button>
+    </form>
+</div>
+
+<script>
+    // Função de formatação do texto
+    function formatText(command) {
+        if (command === 'fontSize') {
+            const size = document.getElementById('fontSize').value;
+            document.execCommand('fontSize', false, size);
+        } else if (command === 'color') {
+            const color = document.getElementById('colorPicker').value;
+            document.execCommand('foreColor', false, color);
+        } else {
+            document.execCommand(command, false, null);
         }
-    </script>
+    }
 
-    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    ### <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+    // Atualizar o campo oculto com o conteúdo do editor no envio
+    document.querySelector("form").addEventListener("submit", function () {
+        document.getElementById("content").value = document.getElementById("editor").innerHTML;
+    });
 
+    // Exibir nome do arquivo selecionado
+    document.querySelector(".custom-file-input").addEventListener("change", function (e) {
+        var fileName = document.getElementById("imagem").files[0].name;
+        var nextSibling = e.target.nextElementSibling;
+        nextSibling.innerText = fileName;
+    });
+</script>
 
-
-
+<!-- Bootstrap JavaScript e dependências -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 {% endblock %}

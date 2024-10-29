@@ -5,6 +5,8 @@ from unidecode import unidecode
 from django.db.models import Q
 from django_comments.models import Comment
 
+# from .forms import PostForm
+
 
 def home(request):
     query = request.GET.get("q")
@@ -43,3 +45,16 @@ def criar_post(request):
         return redirect("blog-home")
 
     return render(request, "blog/create_post.html")
+
+
+# def criar_post(request):
+#     if request.method == "POST":
+#         form = PostForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             form.save()
+#             return redirect(
+#                 "blog-home"
+#             )
+#     else:
+#         form = PostForm()
+#     return render(request, "blog/create_post.html", {"form": form})

@@ -148,3 +148,16 @@ a, h1, h2, h3, h4, h5, h6 {
   background-color: #ebebeb !important;
 }
 
+.help-text {
+  text-align: left;  
+}
+
+.help-text li {
+  list-style-type: none;
+}
+
+.help-text ul {
+  margin: 0;
+  padding: 0;
+}
+

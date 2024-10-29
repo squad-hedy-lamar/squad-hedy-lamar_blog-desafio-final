@@ -37,10 +37,6 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django_comments",
     "blog",
-<<<<<<< HEAD
-    "users",
-=======
->>>>>>> efb495839a81e40f60de355cf57a56e9d1339272
 ]
 
 MIDDLEWARE = [

@@ -2,8 +2,8 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.forms import UserCreationForm, PasswordResetForm,PasswordChangeForm
-from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import UserCreationForm, PasswordResetForm,PasswordChangeForm,AuthenticationForm
+from django.contrib.auth import update_session_auth_hash,authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.auth.decorators import login_required
@@ -38,6 +38,13 @@ def cadastrar(request):
         form = CadastroForm(request.POST)
         if form.is_valid():
             form.save()
+            return redirect('profile')
+        if form.errors.get('username'):
+            messages.error(request, form.errors.get('username')[0]) # username is a tuple
+        if form.errors.get('email'):    
+            messages.error(request, form.errors.get('email')[0]) # email is a tuple 
+        if form.errors.get('user already exists'):
+            messages.error(request, form.errors.get('user already exists')[0])
             return redirect('login')
     else:
         form = CadastroForm()
@@ -57,6 +64,23 @@ def profile(request):
     profile = get_object_or_404(Profile, user=request.user)
     return render(request, 'users/profile.html', {'profile': profile})
 
+
+def user_login(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(request,username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('/profile/')
+            else:
+                form.add_error(None, 'Usuário ou senha inválidos. Tente novamente.')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'users/login.html', {'form': form})
+
 @login_required
 def create_profile(request):
     if request.method == 'POST':
@@ -68,7 +92,7 @@ def create_profile(request):
             return redirect('profile')
     else:
         form = ProfileForm()
-    return render(request, 'users/create_profile.html', {'form': form})
+    return render(request, 'users/profile.html', {'form': form})
 
 @login_required
 def edit_profile(request):
@@ -103,7 +127,7 @@ def password_reset(request):
             return redirect('password_reset_done')
     else:
         form = PasswordResetForm()
-    return render(request, 'registration/password_reset_form.html', {'form': form})
+    return render(request, 'users/password_reset.html', {'form': form})
 
 @login_required
 def change_password(request):

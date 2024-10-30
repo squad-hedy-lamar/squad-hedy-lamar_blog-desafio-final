@@ -4,13 +4,13 @@ from django.contrib.auth import views as auth_views
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import home, cadastrar, profile, create_profile, edit_profile, delete_user, password_reset,change_password
+from .views import home, cadastrar, profile, create_profile, edit_profile, delete_user, password_reset,change_password, user_login
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.home, name='blog-home'),
+    path('', home, name='blog-home'),
     path('post/<int:id>/', views.details, name='post-detail'),
-    path('login/',auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
+    path('login/',user_login, name='login'),
     path('logout/', auth_views.LogoutView.as_view(), name='logout'),
     path('comments/', include('django_comments.urls')),
     path('cadastrar/', views.cadastrar, name='cadastrar'),

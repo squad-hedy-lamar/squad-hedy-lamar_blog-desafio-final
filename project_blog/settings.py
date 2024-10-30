@@ -41,8 +41,8 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django_comments",
     "blog",
+    "users",
 ]
-
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -118,10 +118,15 @@ USE_TZ = True
 SITE_ID = 1
 
 LOGIN_URL = '/login/'
+
 LOGIN_REDIRECT_URL = '/'
+
 LOGOUT_REDIRECT_URL = '/'
+
 CADASTER_URL = 'cadastrar/'
+
 PROFILE_URL= '/profile.html'
+
 CHANGE_PASSWORD_URL = 'change_password/'
 
 

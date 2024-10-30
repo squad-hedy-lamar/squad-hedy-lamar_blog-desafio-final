@@ -4,39 +4,26 @@
 {% block title %}Login - Meu Blog{% endblock %}
 
 {% block content %}
-<div class="container mt-5 w-50" style="width: 35% !important; ">
-    <h2>Login</h2>
-    <form method="post" class="form-signin mt-5">
-        {% csrf_token %}
-        <div class="mb-3">
-            <input type="text" name="username" class="form-control" placeholder="Digite seu usuário" id="{{ form.username.id_for_label }}">
-        </div>
-
-        <div class="mb-3">
-            <input type="password" name="password" class="form-control" placeholder="Digite sua senha" id="{{ form.password.id_for_label }}">
-        </div>
-        <button type="submit" class="btn btn-lg btn-primary w-100">acessar</button>
-
-        <div class="mt-3">
-            <a href="{% url 'cadastrar' %}">cadastre-se</a>
-        </div>
-    </form>
-
-    {% if form.errors %}
-    <div class="alert alert-danger text-start mt-5" role="alert">
-        {% for field in form %}
+    <div class="container">
+        <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        {% if form.errors %}
+        <div class="alert alert-danger" role="alert">
+            {% for field in form %}
             {% for error in field.errors %}
-                <p>{{ field.label }}: {{ error }}</p>
+            <p>{{ field.label }}: {{ error }}</p>
             {% endfor %}
-        {% endfor %}
-        
-        {% if form.non_field_errors %}
+            {% endfor %}
+            {% if form.non_field_errors %}
             {% for error in form.non_field_errors %}
-                <p>{{ error }}</p>
+            <p>{{ error }}</p>
             {% endfor %}
+            {% endif %}
+        </div>
         {% endif %}
     </div>
-    {% endif %}
-    
-</div>
 {% endblock %}

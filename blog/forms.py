@@ -23,3 +23,5 @@ class PasswordChangeForm(forms.Form):
 
 class PasswordResetForm(forms.Form):
     email = forms.EmailField(label='Email', max_length=254)
+    new_password1 = forms.CharField(label='Nova Senha', widget=forms.PasswordInput)
+    new_password2 = forms.CharField(label='Confirmar Nova Senha', widget=forms.PasswordInput)

@@ -28,3 +28,4 @@ def image_preview(self, obj):
 
 
 image_preview.short_description = "Pré-visualização"
+

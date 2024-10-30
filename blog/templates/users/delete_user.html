@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home - Meu Blog{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Excluir Conta</h2>
+    <p>Tem certeza de que deseja excluir sua conta? Esta ação não pode ser desfeita.</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Excluir Conta</button>
+        <a href="{% url 'perfil' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

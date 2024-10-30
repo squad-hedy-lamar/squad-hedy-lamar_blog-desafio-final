@@ -77,7 +77,7 @@ body {
   &:hover {
     background-color: #CF5089 !important; 
     border-color: #CF5089;
-    color: #fff;
+    color: #fff !important;
     transition: background-color 0.3s ease, border-color 0.3s ease;
   }
 }
@@ -89,7 +89,7 @@ body {
   &:hover {
     background-color: #CF5089 !important; 
     border-color: #CF5089;
-    color: #fff;
+    color: #fff !important;
     transition: background-color 0.3s ease, border-color 0.3s ease;
   }
 }
@@ -146,5 +146,18 @@ a, h1, h2, h3, h4, h5, h6 {
 
 .dropdown-item:hover {
   background-color: #ebebeb !important;
+}
+
+.help-text {
+  text-align: left;  
+}
+
+.help-text li {
+  list-style-type: none;
+}
+
+.help-text ul {
+  margin: 0;
+  padding: 0;
 }
 

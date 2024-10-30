@@ -24,7 +24,7 @@ SECRET_KEY = "django-insecure-a$&xmsxscz)y=6#zu@w=4y%&x3-bzu(0_1wml(wo$fh&-po_d*
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['emanoela.pythonanywhere.com', 'localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django_comments",
     "blog",
+    "users",
 ]
-
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -54,7 +54,7 @@ ROOT_URLCONF = "project_blog.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, 'templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -104,9 +104,17 @@ USE_TZ = True
 
 SITE_ID = 1
 
-LOGIN_URL = "/login/"
-LOGIN_REDIRECT_URL = "/"
-LOGOUT_REDIRECT_URL = "/"
+LOGIN_URL = '/login/'
+
+LOGIN_REDIRECT_URL = '/'
+
+LOGOUT_REDIRECT_URL = '/'
+
+CADASTER_URL = 'cadastrar/'
+
+PROFILE_URL= '/profile.html'
+
+CHANGE_PASSWORD_URL = 'change_password/'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
@@ -115,10 +123,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",  # Diretório estático global (compartilhado)
 ]
 
-# Media files
 MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+SITE_ID = 1

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Perfil - Meu Blog{% endblock %}
+{% block content %}
+<div class="container">
+    <h2 class="mt-5 mb-5">Perfil</h2>
+    <p><strong>Olá, </strong> {{ profile.user.username }} !</p>
+    <p><strong>Email:</strong> {{ profile.user.email }}</p>
+    <p><strong>Bio:</strong> {{ profile.bio }}</p>
+    {% if profile.profile_pic %}
+        <img src="{{ profile.profile_pic.url }}" alt="Foto de Perfil" class="img-thumbnail"
+        style="width: 150px; height: 150px;">
+    {% else %}
+        <p><small class="text-muted"><i class="fa fa-user" aria-hidden="true"></i> Sem foto de perfil</small></p>
+    {% endif %}
+    <a href="{% url 'edit_profile' %}" class="btn mt-5 btn-outline-primary">Editar Perfil</a>
+</div>
+<div class="container my-5"> Mudar a senha? <a href="{% url 'change_password' %}">Clique aqui</a></div>
+{% endblock %}

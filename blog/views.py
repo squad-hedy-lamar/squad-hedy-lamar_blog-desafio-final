@@ -38,6 +38,7 @@ def cadastrar(request):
         form = CadastroForm(request.POST)
         if form.is_valid():
             form.save()
+            Profile.objects.get_or_create(user=request.user) # cria o perfil 
             return redirect('profile')
         if form.errors.get('username'):
             messages.error(request, form.errors.get('username')[0]) # username is a tuple

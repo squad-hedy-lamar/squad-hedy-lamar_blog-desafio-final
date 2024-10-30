@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home - Meu Blog{% endblock %}
+
+{% block content %}
+<div class="row d-flex justify-content-center">
+    <h2 class="mt-5">Cadastrar</h2>
+    <form method="post" class="needs-validation mt-5" novalidate>
+        {% csrf_token %}
+        <div class="row col">
+            <div class="mb-3 col-md-6">
+                <input type="text" 
+                    name="username" 
+                    class="form-control {% if form.username.errors %}is-invalid{% endif %}" 
+                    placeholder="Digite seu usuário" 
+                    value="{{ form.username.value|default:'' }}"
+                    id="{{ form.username.id_for_label }}">
+                {% if form.username.help_text %} 
+                <div class="col">
+                    <div class="form-text help-text">{{ form.username.help_text }}</div>
+                </div>
+                {% endif %}
+                {% if form.username.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.username.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="mb-3 col-md-6">
+                <input type="text" 
+                    name="email" 
+                    class="form-control {% if form.email.errors %}is-invalid{% endif %}" 
+                    placeholder="Digite seu e-mail" 
+                    value="{{ form.email.value |default:'' }}"
+                    id="{{ form.email.id_for_label }}">
+                {% if form.email.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="mb-3 col-md-6">
+                <input type="password" 
+                    name="password1" 
+                    class="form-control {% if form.password1.errors %}is-invalid{% endif %}" 
+                    placeholder="Digite sua senha" 
+                    value="{{ form.password1.value |default:'' }}"
+                    id="{{ form.password1.id_for_label }}">
+                {% if form.password1.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.password1.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="mb-3 col-md-6">
+                <input type="password" 
+                    name="password2" 
+                    class="form-control {% if form.password2.errors %}is-invalid{% endif %}" 
+                    placeholder="Digite sua senha novamente" 
+                    value="{{ form.password2.value |default:'' }}"
+                    id="{{ form.password2.id_for_label }}">
+                {% if form.password2.errors %}
+                    <div class="invalid-feedback">
+                        {% for error in form.password2.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+            {% if form.password1.help_text %} 
+                <div class="row col">
+                    <div class="form-text help-text">{{ form.password1.help_text }}</div>
+                </div>
+            {% endif %}
+        </div>
+        <div class="d-flex align-items-center">
+            <button type="submit" class="btn btn-primary ms-auto">cadastrar</button>
+            <button type="reset" class="btn btn-outline-primary ms-2">limpar</button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

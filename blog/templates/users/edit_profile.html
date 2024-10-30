@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home - Meu Blog{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Editar Perfil</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button type="delete" class="btn btn-secondary">Cancelar</button>
+    </form>
+</div>
+{% endblock %}

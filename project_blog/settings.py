@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,8 +41,8 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "django_comments",
     "blog",
+    "users",
 ]
-
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -57,7 +58,7 @@ ROOT_URLCONF = "project_blog.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [os.path.join(BASE_DIR, 'templates')],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -117,8 +118,17 @@ USE_TZ = True
 SITE_ID = 1
 
 LOGIN_URL = '/login/'
+
 LOGIN_REDIRECT_URL = '/'
+
 LOGOUT_REDIRECT_URL = '/'
+
+CADASTER_URL = 'cadastrar/'
+
+PROFILE_URL= '/profile.html'
+
+CHANGE_PASSWORD_URL = 'change_password/'
+
 
 
 # Static  files (CSS, JavaScript, Images)
@@ -137,7 +147,7 @@ STATICFILES_DIRS = [
 import os
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 SITE_ID = 1
+

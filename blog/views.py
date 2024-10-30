@@ -15,9 +15,6 @@ from django_comments.models import Comment
 from .models import Profile
 from django.contrib import messages
 
-# from .forms import PostForm
-
-
 def home(request):
     query = request.GET.get('q')
     if query:
@@ -30,42 +27,6 @@ def home(request):
     else:
         posts = Post.objects.all().order_by("-created_at")
     return render(request, "blog/list.html", {'posts': posts, 'query': query})
-
-
-def details(request, id):
-    # Tenta buscar o post pelo ID, ou retorna 404 se não existir
-    post = get_object_or_404(Post, id=id)
-    comments = Comment.objects.filter(
-        object_pk=post.pk, content_type__model="post"
-    )  # Filtrar pelos comentários do post
-    return render(request, "blog/details.html", {"post": post, "comments": comments})
-
-
-def criar_post(request):
-    if request.method == "POST":
-        title = request.POST.get("title")
-        content = request.POST.get("content")
-        image = request.FILES.get("image")  # Captura a imagem enviada
-
-        post = Post(title=title, content=content, image=image, author=request.user)
-        post.save()
-        return redirect("blog-home")
-
-    return render(request, "blog/create_post.html")
-
-
-# def criar_post(request):
-#     if request.method == "POST":
-#         form = PostForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             form.save()
-#             return redirect(
-#                 "blog-home"
-#             )
-#     else:
-#         form = PostForm()
-#     return render(request, "blog/create_post.html", {"form": form})
-
 
 def details(request, id):
     post = get_object_or_404(Post, id=id)

@@ -1,15 +1,25 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block title %}Home - Meu Blog{% endblock %}
-
 {% block content %}
-<div class="container">
-    <h2>Editar Perfil</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Salvar</button>
-        <button type="delete" class="btn btn-secondary">Cancelar</button>
-    </form>
+<div class="container mt-5 w-50" style="max-width: 500px;">
+    <h2 class="mb-4 text-center">Editar Perfil</h2>
+
+    <div class="card shadow p-4">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+
+            <div class="d-flex justify-content-between mt-3">
+                <button type="submit" class="btn btn-pink"
+                    style="background-color:#ff69b4; color: white; border: none;">Salvar</button>
+                <button type="button" class="btn btn-secondary" onclick="window.history.back();">Cancelar</button>
+            </div>
+        </form>
+    </div>
 </div>
+
 {% endblock %}

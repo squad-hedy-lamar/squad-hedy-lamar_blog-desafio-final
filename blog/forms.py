@@ -16,8 +16,32 @@ class CadastroForm(UserCreationForm):
 class ProfileForm(forms.ModelForm):
     class Meta:
         model = Profile
-        img = forms.ImageField(required=False)
         fields = ["bio", "profile_pic", "user"]
+
+    # Inicializando com o método __init__ para adicionar classes
+    def __init__(self, *args, **kwargs):
+        super(ProfileForm, self).__init__(*args, **kwargs)
+
+        # Aplicando classes Bootstrap aos campos
+        self.fields["bio"].widget.attrs.update(
+            {
+                "class": "form-control",
+                "placeholder": "Digite uma breve descrição sobre você",
+            }
+        )
+
+        self.fields["profile_pic"].widget.attrs.update(
+            {"class": "form-control", "style": "padding: 10px;"}
+        )
+
+        # Se desejar exibir o campo 'user' como somente leitura
+        self.fields["user"].widget.attrs.update(
+            {
+                "class": "form-control-plaintext",
+                "readonly": "readonly",
+                "style": "background-color: #EEE3E3; color: #333;",
+            }
+        )
 
 
 class PasswordChangeForm(forms.Form):

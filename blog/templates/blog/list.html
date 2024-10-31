@@ -16,6 +16,12 @@
   </div>
 </div>
 
+<div class="btn-criar-post d-flex justify-content-center mt-5 ">
+  <button type="button" class="btn btn-primary btn-lg mx-auto p-2"
+    onclick="window.location.href='{% url 'criar_post' %}'">
+    CRIAR POSTAGEM</button>
+</div>
+
 <!-- cards.html -->
 <div class="text-start mt-5 post-list">
   <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -28,15 +34,13 @@
         {% if post.image %}
         <img src="{{ post.image.url }}" class="card-img-top img-post w-100 p-3 "
           style="height: 150px; border-radius: 10px;" alt="Imagem do post">
-        {% else %}
-        <img src="{% static 'img/placeholder.png' %}" class="card-img-top img-post " alt="Imagem padrão">
         {% endif %}
 
 
         <div class="card-body">
           <h5 class="card-title">{{ post.title }}</h5> <!--Mostra Titulo-->
           <p class="card-text text-truncate">
-            {{ post.content|truncatewords:20}} <!-- Trunca o conteúdo do post para mostrar as primeiras 20 palavras -->
+            {{ post.content|safe|truncatewords:20}} <!-- Trunca o conteúdo do post para mostrar as primeiras 20 palavras -->
           </p>
 
           <div class="text-end">

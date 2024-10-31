@@ -19,8 +19,8 @@ urlpatterns = [
     path('edit_profile/', views.edit_profile, name='edit_profile'),
     path('delete_user/',views.delete_user, name='delete_user'),
     path('password_reset/', views.password_reset, name='password_reset'),
-    path('change_password/', views.change_password, name='change_password')
-    
+    path('change_password/', views.change_password, name='change_password'),
+    path("criar_post/", views.criar_post, name="criar_post")
 ]
 
 if settings.DEBUG:

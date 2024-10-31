@@ -144,3 +144,15 @@ def change_password(request):
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'users/change_password.html', {'form': form})
+
+def criar_post(request):
+    if request.method == "POST":
+        title = request.POST.get("title")
+        content = request.POST.get("content")
+        image = request.FILES.get("image")  # Captura a imagem enviada
+
+        post = Post(title=title, content=content, image=image, author=request.user)
+        post.save()
+        return redirect("blog-home")
+
+    return render(request, "blog/create_post.html")

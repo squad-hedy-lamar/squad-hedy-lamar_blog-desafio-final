@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home - Meu Blog{% endblock %}
+
+{% block content %}
+<div class="container"> 
+    <h1>Bem-vindo ao Meu Blog</h1>
+    <p>Escreva suas postagens e compartilhe conhecimento com a comunidade.</p>
+    <a href="{% url 'post_list' %}" class="btn btn-secondary">Ver Postagens</a>
+
+</div>
+{% endblock %}

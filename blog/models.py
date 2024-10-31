@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractUser, Group, Permission
+from django.contrib.auth.models import User, AbstractUser, Group, Permission
 from django.conf import settings
 from django.forms import ModelForm
 
@@ -40,7 +40,7 @@ class Comment(models.Model):
   updated_at = models.DateTimeField(auto_now=True)
   likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='likes', blank=True)
   def __str__(self):
-    return f'{self.author} - {self.content}'
+    return f'{self.author} - {self.content[:20]}'
 
 class Profile(models.Model):
   user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -63,4 +63,3 @@ class PasswordReset(models.Model):
   user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
   token = models.CharField(max_length=100)
   created_at = models.DateTimeField(auto_now_add=True)
-

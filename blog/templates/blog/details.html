@@ -12,6 +12,9 @@
   <div class="conteudo-post">
     <h1 class="titulo-post">{{ post.title }}</h1>
     <p class="mt-5">{{ post.content }}</p>
+    <div>
+    <a href ="{% url 'voltar' %}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</a>
+  </div>
     <div class="footer-conteudo">
       <small>
         <i class="fa fa-user" aria-hidden="true"></i> Publicado por: {{ post.author.username }}</small>
@@ -62,9 +65,13 @@
                   <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
                   <p class="mb-0"> Like</p>
                 </a>
-                <a href="#!" class="d-flex align-items-center me-3">
-                  <i class="fa fa-share-square-o" aria-hidden="true"></i>
-                  <p class="mb-0"> Share</p>
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank"
+                  class="btn btn-outline-primary"> <i class="fa fa-facebook" aria-hidden="true"></i> Facebook </a>
+                  <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}" target="_blank"
+                  class="btn btn-outline-primary"> <i class="fa fa-twitter" aria-hidden="true"></i> Twitter </a>
+                  <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}" target="_blank"
+                  class="btn btn-outline-primary"> <i class="fa fa-linkedin" aria-hidden="true"></i> LinkedIn </a>
+                  
                 </a>
               </div>
 
@@ -86,7 +93,7 @@
                 <form action="{% comment_form_target %}" method="post">
                     {% csrf_token %}
 
-                    <input type="hidden" name="next" value="{% url 'post-detail' id=post.id %}" />
+                    <input type="hidden" name="next" value="{% url 'post-detail' pk=post.pk %}" />
                     {% for hidden in form.hidden_fields %}
                       {{ hidden }} 
                     {% endfor %}

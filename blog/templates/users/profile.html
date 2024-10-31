@@ -14,6 +14,10 @@
         <p>Sem foto de perfil</p>
     {% endif %}
     <a href="{% url 'edit_profile' %}" class="btn btn-primary">Editar Perfil</a>
+    <a href="{% url 'create_post' %}" class="btn btn-secondary">Criar Post</a>
+    <a href="{% url 'delete_user' %}" class="btn btn-info">Deletar Conta</a>
+    <a href="{% url 'logout' %}" class="btn btn-danger">Sair</a>
+
 </div>
 <div class="container my-5"> Mudar a senha? <a href="{% url 'change_password' %}">Clique aqui</a></div>
 {% endblock %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Home - Meu Blog{% endblock %}
+
+{% block content %}
+<h1>Deletar Post</h1>
+<p>Tem certeza que deseja deletar o post "{{ post.title }}"?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Confirmar</button>
+    <a href="{% url 'post-detail' post.id %}">Cancelar</a>
+</form>
+{% endblock %}

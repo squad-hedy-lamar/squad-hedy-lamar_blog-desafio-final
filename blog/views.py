@@ -7,13 +7,14 @@ from django.contrib.auth import update_session_auth_hash,authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.auth.decorators import login_required
-from .forms import CadastroForm, ProfileForm
-from blog.models import Post
+from .forms import CadastroForm, ProfileForm, PostForm, CommentForm, PasswordResetForm, PasswordChangeForm
+from blog.models import Post, Profile
 from unidecode import unidecode
 from django.db.models import Q
 from django_comments.models import Comment
-from .models import Profile
+from .models import Profile, Post
 from django.contrib import messages
+
 
 def home(request):
     query = request.GET.get('q')
@@ -28,8 +29,8 @@ def home(request):
         posts = Post.objects.all().order_by("-created_at")
     return render(request, "blog/list.html", {'posts': posts, 'query': query})
 
-def details(request, id):
-    post = get_object_or_404(Post, id=id)
+def details(request, pk):
+    post = get_object_or_404(Post, pk=pk)
     comments = Comment.objects.filter(object_pk=post.pk, content_type__model='post')
     return render(request, "blog/details.html", {'post': post, 'comments': comments})
 
@@ -63,6 +64,7 @@ def delete_user(request):
 def profile(request):
     profile = get_object_or_404(Profile, user=request.user)
     return render(request, 'users/profile.html', {'profile': profile})
+
 
 
 def user_login(request):
@@ -114,6 +116,12 @@ def create_user_profile(sender, instance, created, **kwargs):
 @receiver(post_save, sender=User)
 def save_user_profile(sender, instance, **kwargs):
         instance.profile.save()
+@login_required
+def delete_profile(request):
+    profile = get_object_or_404(Profile, user=request.user)
+    if request.method == 'POST':
+        profile.delete()
+        return redirect('home')
 
 def password_reset(request):
     if request.method == 'POST':
@@ -143,3 +151,60 @@ def change_password(request):
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'users/change_password.html', {'form': form})
+
+@login_required
+def like_comment(request, comment_id):
+    comment = get_object_or_404(Comment, id=comment_id)
+    comment.likes.add(request.user)
+    return redirect('post', comment.post.id)
+
+@login_required
+def create_post(request):
+    form = PostForm()
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('post-detail', pk=post.pk)
+    return render(request, 'blog/create_post.html', {'form': form})
+
+@login_required
+def edit_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == 'POST':
+        form = PostForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('post-detail', post.pk)
+    else:
+        form = PostForm(instance=post)
+    return render(request, 'blog/create_post.html', {'form': form})
+@login_required
+def delete_post(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == 'POST':
+        post.delete()
+        return redirect('list.html')
+    return render(request, "blog/details.html", {'post': post})
+
+@login_required
+def add_comment(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.content_object = post
+            comment.user = request.user
+            comment.save()
+            return redirect('post', post_id)
+    else:
+        form = CommentForm()
+    return render(request, 'blog/add_comment.html', {'form': form, 'post': post})
+
+def voltar(request):
+    return render(request, "blog/list.html", {'posts': Post.objects.all().order_by("-created_at")})

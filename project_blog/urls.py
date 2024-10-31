@@ -27,7 +27,6 @@ urlpatterns = [
     # path("admin/", admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
     path("", include("blog.urls")),
-    path("post/<int:id>/", views.details, name="post-detail"),
     path("comments/", include("django_comments.urls")),
 ]
 # Servir arquivos de mídia em desenvolvimento

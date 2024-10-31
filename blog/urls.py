@@ -6,7 +6,6 @@ from . import views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    # path('', include('blog.urls')),
     path("", views.home, name="blog-home"),
     path("post/<int:id>/", views.details, name="post-detail"),
     path(
@@ -15,6 +14,6 @@ urlpatterns = [
         name="login",
     ),
     path("logout/", auth_views.LogoutView.as_view(), name="logout"),
-    path("comments/", include("django_comments.urls")),
+    # path("comments/", include("django_comments.urls")),
     path("criar_post/", views.criar_post, name="criar_post"),
 ]

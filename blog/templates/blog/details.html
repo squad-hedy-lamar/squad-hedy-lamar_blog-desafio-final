@@ -7,7 +7,7 @@
 {% block content %}
 <div class="container-fluid my-4 mx-20 post-details">
   {% if post.image %}
-  <img src="{{ post.image.url }}" class="img-fluid img-post" alt="Imagem do post">
+  <img src="{{ post.image.url }}" class="img-fluid img-post" style="height: 450px;" alt="Imagem do post">
   {% endif %}
   <div class="conteudo-post">
     <h1 class="titulo-post">{{ post.title }}</h1>
@@ -38,11 +38,8 @@
           <div class="card mb-1">
             <div class="card-body">
               <div class="d-flex flex-start align-items-center">
-                <img src="{% static 'img/avatar.png' %}" 
-                  class="rounded-circle shadow-1-strong me-3" 
-                  width="60"
-                  height="60" 
-                  alt="avatar" />
+                <img src="{% static 'img/avatar.png' %}" class="rounded-circle shadow-1-strong me-3" width="60"
+                  height="60" alt="avatar" />
                 <div>
                   <h6 class="fw-bold mb-1">{{ comment.user_name }}</h6>
                   <p class="text-muted small mb-0">
@@ -77,60 +74,57 @@
 
           <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
             <div class="d-flex flex-start w-100">
-              <img class="rounded-circle shadow-1-strong me-3"
-              src="{% static 'img/avatar.png' %}" alt="avatar" width="40"
-              height="40" />
+              <img class="rounded-circle shadow-1-strong me-3" src="{% static 'img/avatar.png' %}" alt="avatar"
+                width="40" height="40" />
               <div data-mdb-input-init class="form-outline w-100">
 
                 {% get_comment_form for post as form %}
                 <form action="{% comment_form_target %}" method="post">
-                    {% csrf_token %}
+                  {% csrf_token %}
 
-                    <input type="hidden" name="next" value="{% url 'post-detail' id=post.id %}" />
-                    {% for hidden in form.hidden_fields %}
-                      {{ hidden }} 
-                    {% endfor %}
+                  <input type="hidden" name="next" value="{% url 'post-detail' id=post.id %}" />
+                  {% for hidden in form.hidden_fields %}
+                  {{ hidden }}
+                  {% endfor %}
 
-                    {% for field in form %}
-                      {% if field.name == "comment" %}
-                      <div class="mb-3">
-                        <textarea 
-                          class="form-control"
-                          rows="4" 
-                          style="background: #fff;"
-                          id="{{ field.id_for_label }}" 
-                          name="{{ field.name }}"
-                          placeholder="Digite seu comentário"
-                          required
-                          oninvalid="this.setCustomValidity('Por favor, insira um comentário.')" 
-                          oninput="this.setCustomValidity('')"
-                          ></textarea>
-                      </div>
-                      {% endif %}
+                  {% for field in form %}
+                  {% if field.name == "comment" %}
+                  <div class="mb-3">
+                    <textarea class="form-control" rows="4" style="background: #fff;" id="{{ field.id_for_label }}"
+                      name="{{ field.name }}" placeholder="Digite seu comentário" required
+                      oninvalid="this.setCustomValidity('Por favor, insira um comentário.')"
+                      oninput="this.setCustomValidity('')"></textarea>
+                  </div>
+                  {% endif %}
 
-                      {% if field.name == "name" %}
-                      <div class="mb-3">
-                        <input class="form-control" type="hidden" id="{{ field.id_for_label }}" name="{{ field.name }}" placeholder="Digite seu nome" value="{{ user.username }}"/>
-                      </div>
-                      {% endif %}
+                  {% if field.name == "name" %}
+                  <div class="mb-3">
+                    <input class="form-control" type="hidden" id="{{ field.id_for_label }}" name="{{ field.name }}"
+                      placeholder="Digite seu nome" value="{{ user.username }}" />
+                  </div>
+                  {% endif %}
 
-                      {% if field.name == "email" %}
-                      <div class="mb-3">
-                        <input class="form-control" type="hidden" id="{{ field.id_for_label }}" name="{{ field.name }}" placeholder="Digite seu email" value="{{ user.email }}"/>
-                      </div>
-                      {% endif %}
+                  {% if field.name == "email" %}
+                  <div class="mb-3">
+                    <input class="form-control" type="hidden" id="{{ field.id_for_label }}" name="{{ field.name }}"
+                      placeholder="Digite seu email" value="{{ user.email }}" />
+                  </div>
+                  {% endif %}
 
-                      {% if field.name == "url" %}
-                      <div class="mb-3">
-                        <input class="form-control" type="hidden" id="{{ field.id_for_label }}" name="{{ field.name }}" placeholder="Digite a url" value="http://localhost:8000/"/>
-                      </div>
-                      {% endif %}
-                    {% endfor %}
+                  {% if field.name == "url" %}
+                  <div class="mb-3">
+                    <input class="form-control" type="hidden" id="{{ field.id_for_label }}" name="{{ field.name }}"
+                      placeholder="Digite a url" value="http://localhost:8000/" />
+                  </div>
+                  {% endif %}
+                  {% endfor %}
 
-                    <div class="float-end mt-2 pt-1">
-                      <button  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-sm">Postar</button>
-                      <button  type="reset" data-mdb-button-init data-mdb-ripple-init class="btn btn-outline-primary btn-sm">Cancelar</button>
-                    </div>
+                  <div class="float-end mt-2 pt-1">
+                    <button type="submit" data-mdb-button-init data-mdb-ripple-init
+                      class="btn btn-primary btn-sm">Postar</button>
+                    <button type="reset" data-mdb-button-init data-mdb-ripple-init
+                      class="btn btn-outline-primary btn-sm">Cancelar</button>
+                  </div>
                 </form>
               </div>
 
@@ -141,7 +135,7 @@
             <h4 class="text-center">Para postar um comentário, faça o <a href="{% url 'login' %}">login</a></h4>
           </div>
           {% endif %}
-          
+
         </div>
       </div>
     </div>

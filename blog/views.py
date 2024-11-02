@@ -188,8 +188,9 @@ def delete_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == 'POST':
         post.delete()
-        return redirect('list.html')
-    return render(request, "blog/details.html", {'post': post})
+        posts = Post.objects.all().order_by('-created_at')
+        return render('blog/home.html', {'posts': posts})
+    return render(request, "blog/delete_post.html", {'post': post}) 
 
 @login_required
 def add_comment(request, post_id):

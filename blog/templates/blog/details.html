@@ -12,8 +12,13 @@
   <div class="conteudo-post">
     <h1 class="titulo-post">{{ post.title }}</h1>
     <p class="mt-5">{{ post.content }}</p>
-    <div>
+  </div>
+  <div>  
     <a href ="{% url 'voltar' %}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</a>
+  </div>
+  <div>
+    <a href="{% url 'edit_post' post.pk %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
+    <a href="{% url 'delete_post' post.pk %}"><i class="fa fa-trash-o" aria-hidden="true"></i> Deletar</a>
   </div>
     <div class="footer-conteudo">
       <small>

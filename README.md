@@ -76,9 +76,12 @@ Se você tiver algum comentário, entre em contato conosco em @squad-hedy-lamar 
 
 <!-- end Authors -->
 
-<!-- License -->
 
-## Licença
+## Fotos Blogs
+
+![image](https://github.com/user-attachments/assets/d4f4cbaa-537f-4692-80ec-8501b809e013)
+
+
 
 [MIT](https://choosealicense.com/licenses/mit/)
 

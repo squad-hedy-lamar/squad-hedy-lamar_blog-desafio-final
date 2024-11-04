@@ -189,7 +189,7 @@ def delete_post(request, pk):
     if request.method == 'POST':
         post.delete()
         posts = Post.objects.all().order_by('-created_at')
-        return render('blog/home.html', {'posts': posts})
+        return render(request, 'blog/home.html', {'posts': posts})
     return render(request, "blog/delete_post.html", {'post': post}) 
 
 @login_required

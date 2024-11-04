@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <h2>Home</h2>
+    <p>Bem vindo ao Blog, Hedy Lamar!</p>
+    <p>Este é um blog simples criado com Django.</p>
+    <p>Para escrever post, acesse a área de login.</p>
+    <a href="{% url 'blog:list' %}" class="btn btn-primary">Ver Posts</a>
+</div>
+
+{% endblock %}

@@ -2,22 +2,40 @@
 {% load static %}
 {% block title %}Perfil - Meu Blog{% endblock %}
 {% block content %}
-<div class="container">
-    <h2>Perfil</h2>
-    <p><strong>Olá, </strong> {{ profile.user.username }} !</p>
-    <p><strong>Email:</strong> {{ profile.user.email }}</p>
-    <p><strong>Bio:</strong> {{ profile.bio }}</p>
-    {% if profile.profile_pic %}
-        <img src="{{ profile.profile_pic.url }}" alt="Foto de Perfil" class="img-thumbnail"
-        style="width: 150px; height: 150px;">
-    {% else %}
-        <p>Sem foto de perfil</p>
-    {% endif %}
-    <a href="{% url 'edit_profile' %}" class="btn btn-primary">Editar Perfil</a>
-    <a href="{% url 'create_post' %}" class="btn btn-secondary">Criar Post</a>
-    <a href="{% url 'delete_user' %}" class="btn btn-info">Deletar Conta</a>
-    <a href="{% url 'logout' %}" class="btn btn-danger">Sair</a>
 
+<div class="container">
+    <h2 class="mt-5 mb-5 display-4 text-left">Perfil</h2> <!-- Alinhamento à esquerda -->
+    <!-- Informação do Perfil -->
+    <div class="card mb-3">
+        <div class="row g-0">
+            <div class="col-md-4">
+                {% if profile.profile_pic %}
+                <img src="{{ profile.profile_pic.url }}" alt="Foto de Perfil" class="img-fluid rounded-start"
+                    style="width: 100%; height: auto;">
+                {% else %}
+                <img src="{% static 'img/avatar.png' %}" alt="Foto de Perfil" class="img-fluid rounded-start"
+                    style="width: 100%; height: auto;">
+                {% endif %}
+            </div>
+            <div class="col-md-8">
+                <div class="card-body text-left"> <!-- Alinhamento à esquerda -->
+                    <h5 class="card-title fs-1">{{ profile.user.username }}</h5>
+                    <p class="card-text fs-5"><strong>Email:</strong> {{ profile.user.email }}</p>
+                    <p class="card-text fs-5"><strong>Bio:</strong> {{ profile.bio }}</p>
+                    <a href="{% url 'edit_profile' %}" class="btn btn-outline-primary mt-3"
+                        style="color: #ea638c; border-color: #ea638c;">Editar Perfil</a> <!-- Botão rosa -->
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-<div class="container my-5"> Mudar a senha? <a href="{% url 'change_password' %}">Clique aqui</a></div>
+<div class="container my-5">
+    <div class="#">
+        <div class="card-body text-left"> <!-- Alinhamento à esquerda -->
+            <h4 class="card-title fs-4">Mudar a senha?</h4>
+            <a href="{% url 'change_password' %}" class="btn btn-primary" style="background-color: #ea638c;">Clique
+                aqui</a> <!-- Botão rosa -->
+        </div>
+    </div>
+</div>
 {% endblock %}

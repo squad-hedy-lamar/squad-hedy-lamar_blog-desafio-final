@@ -4,6 +4,7 @@ from django.contrib.auth import views as auth_views
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
+
 from .views import home, voltar, delete_post,cadastrar, profile, create_profile, edit_profile, delete_user, password_reset,change_password, user_login,create_post,add_comment
 
 urlpatterns = [
@@ -25,6 +26,8 @@ urlpatterns = [
     path('password_reset/', password_reset, name='password_reset'),
     path('change_password/', change_password, name='change_password'),
     path('voltar',voltar, name='voltar'),
+    path("criar_post/", views.criar_post, name="criar_post")
+
 ]
 
 if settings.DEBUG:

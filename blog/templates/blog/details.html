@@ -11,7 +11,7 @@
   {% endif %}
   <div class="conteudo-post">
     <h1 class="titulo-post">{{ post.title }}</h1>
-    <p class="mt-5">{{ post.content }}</p>
+    <p class="mt-5">{{ post.content|striptags|safe }}</p>
     <div class="footer-conteudo">
       <small>
         <i class="fa fa-user" aria-hidden="true"></i> Publicado por: {{ post.author.username }}</small>

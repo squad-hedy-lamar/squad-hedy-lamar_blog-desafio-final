@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load comments %}
 {% block title %}
-Formulário com Bootstrap
+Criar Postagem
 {% endblock %}
 {% block content %}
 <div class="container mt-5">
@@ -55,8 +54,8 @@ Formulário com Bootstrap
 
         <!-- Área do editor de texto  -->
 
-        <div id="editor" contenteditable="true" class="form-control mt-2 text-start" style="min-height: 200px;"></div>
-        {{ content }}
+        <div id="editor" contenteditable="true" class="form-control mt-2 text-start " style="min-height: 200px;"></div>
+
         <input type="hidden" name="content" id="content">
 
         <!-- Botão de Enviar -->

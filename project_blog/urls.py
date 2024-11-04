@@ -26,7 +26,8 @@ urlpatterns = [
     # path("admin/", admin.site.urls),
     path("accounts/", include("django.contrib.auth.urls")),
     path("", include("blog.urls")),
-    path('post/<int:id>/', views.details, name='post-detail'),
+    path('post/<int:pk>/', views.details, name='post-detail'),
+    path('post/<int:pk>/delete/', views.delete_post, name='delete-post'),
     path("comments/", include("django_comments.urls")),
 ]
 

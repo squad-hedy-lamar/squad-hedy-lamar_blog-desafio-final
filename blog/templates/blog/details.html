@@ -11,6 +11,14 @@
   {% endif %}
   <div class="conteudo-post">
     <h1 class="titulo-post">{{ post.title }}</h1>
+  </div>
+  <div>  
+    <a href ="{% url 'voltar' %}"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</a>
+  </div>
+  <div>
+    <a href="{% url 'edit_post' post.pk %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Editar</a>
+    <a href="{% url 'delete_post' post.pk %}"><i class="fa fa-trash-o" aria-hidden="true"></i> Deletar</a>
+  </div>
     <p class="mt-5">{{ post.content|striptags|safe }}</p>
     <div class="footer-conteudo">
       <small>
@@ -59,9 +67,13 @@
                   <i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
                   <p class="mb-0"> Like</p>
                 </a>
-                <a href="#!" class="d-flex align-items-center me-3">
-                  <i class="fa fa-share-square-o" aria-hidden="true"></i>
-                  <p class="mb-0"> Share</p>
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank"
+                  class="btn btn-outline-primary"> <i class="fa fa-facebook" aria-hidden="true"></i> Facebook </a>
+                  <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}" target="_blank"
+                  class="btn btn-outline-primary"> <i class="fa fa-twitter" aria-hidden="true"></i> Twitter </a>
+                  <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ request.build_absolute_uri }}" target="_blank"
+                  class="btn btn-outline-primary"> <i class="fa fa-linkedin" aria-hidden="true"></i> LinkedIn </a>
+                  
                 </a>
               </div>
 
